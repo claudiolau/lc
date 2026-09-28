@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { CoffeeIcon } from "./BrandIcon";
 
 export default function Header() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
 
@@ -19,21 +22,22 @@ export default function Header() {
     localStorage.setItem("theme", isDark ? "dark" : "light");
   };
 
+  const linkClass = (href: string) =>
+    `px-2 py-1 text-sm transition-colors sm:px-3 sm:py-2 ${
+      pathname === href
+        ? "font-medium text-black dark:text-white"
+        : "text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+    }`;
+
   return (
     <header>
-      <nav className="mx-auto flex w-full max-w-2xl items-center justify-between pb-8 pt-8 sm:pb-16">
-        <div className="ml-[0.6rem] flex items-center gap-1">
-          <Link
-            href="/"
-            className="px-2 py-1 text-sm text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white sm:px-3 sm:py-2"
-          >
+      <nav className="mx-auto flex w-full max-w-2xl items-center justify-between px-4 pb-6 pt-6 sm:px-6 sm:pb-8 sm:pt-8">
+        <div className="flex items-center gap-1">
+          <Link href="/" className={linkClass("/")}>
             about
           </Link>
 
-          <Link
-            href="/writing"
-            className="px-2 py-1 text-sm text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white sm:px-3 sm:py-2"
-          >
+          <Link href="/writing" className={linkClass("/writing")}>
             writing
           </Link>
         </div>

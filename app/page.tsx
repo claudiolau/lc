@@ -1,10 +1,11 @@
+import GitHubRepos from "./components/GithubRepos";
 import PageContainer from "./components/PageContainer";
 import Image from "next/image";
 
 export default function HomePage() {
   return (
     <PageContainer>
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="mt-10 max-w-2xl">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
           <div>
             <h1 className="max-w-2xl text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
@@ -26,7 +27,7 @@ export default function HomePage() {
           />
         </div>
 
-        <section className="mt-8 max-w-xl text-[15px] leading-7 text-zinc-700 dark:text-zinc-300">
+        <section className="mt-8 max-w-xl animate-fade-in text-[15px] leading-7 text-zinc-700 dark:text-zinc-300">
           <p className="mb-6">
             I grew up in Toronto, Canada, studied Math and Philosophy at the
             University of Toronto, and now work in software and product
@@ -37,12 +38,13 @@ export default function HomePage() {
 
           <ul className="list-disc space-y-1 pl-5">
             <li>building thoughtful software</li>
-            <li>travel and exploring new places</li>
             <li>experimenting with tools and workflows</li>
-            <li>product design and the details of everyday experiences</li>
             <li>backpacking and long-distance hiking</li>
           </ul>
         </section>
+        <div className="mt-16 sm:mt-20">
+          <GitHubRepos />
+        </div>
       </section>
     </PageContainer>
   );
